@@ -13,7 +13,7 @@ HospitEase is a full stack hospital management system developed by gathering req
 - [x] Discharge patient from hospital. 
 - [x] Schedule an appointment with a doctor. 
 - [x] Leave rating for a doctor. 
-- [] Billing mechanism. 
+- [ ] Billing mechanism. 
 
 The schema and the ER-diagram that depicts relationships within the entire system are available [here](https://github.com/saadsheralam/HospitEase/tree/main/db-info).
 
@@ -46,4 +46,33 @@ node server.js
 ```
 cd client 
 npm start
+```
+
+### Testing 
+To test the schema and the relationships in the DB, automated Python scripts to create a MySQL database for the given [schema](https://github.com/saadsheralam/HospitEase/blob/main/db-info/Schema.drawio) are contained [here](https://github.com/saadsheralam/HospitEase/tree/main/db-info/SQL-DB). 
+
+1. Install [MySQL Server](https://dev.mysql.com/downloads/mysql/) and [MySQL Workbench](https://www.mysql.com/products/workbench/) and set up and admin account for MySQL server. 
+2. Run MySQL Workbench. 
+3. Add user and password for SQL server in the following places: [here](https://github.com/saadsheralam/HospitEase/blob/0be223f7ddc75cd41a0ccaf7b214042210c9ed5f/db-info/SQL-DB/create_db.py#L7), [here](https://github.com/saadsheralam/HospitEase/blob/0be223f7ddc75cd41a0ccaf7b214042210c9ed5f/db-info/SQL-DB/create_tables.py#L6), [here](https://github.com/saadsheralam/HospitEase/blob/0be223f7ddc75cd41a0ccaf7b214042210c9ed5f/db-info/SQL-DB/populate_tables.py#L10), and [here](https://github.com/saadsheralam/HospitEase/blob/0be223f7ddc75cd41a0ccaf7b214042210c9ed5f/db-info/SQL-DB/test_db.py#L6).
+4. Navigate to the SQL-DB directory and install all dependencies: 
+```
+cd db-info/SQL-DB/
+pip3 install mysql-connector
+```
+4. Run the create-db.py file to create a `HospitEase` DB. Observe the newly created DB in MySQL Workbench.
+```
+cd db-info/SQL-DB/
+python3 create-db.py
+```
+5. Run the create-tables.py file to create all tables in the `HospitEase` DB. Observe the newly created tables in MySQL Workbench. 
+```
+python3 create-tables.py
+```
+6. Run the populate-tables.py file to add test data to all tables in the `HospitEase` DB. Observe data in MySQL Workbench. You can run queries in Workbench to verify all tables have been populated correctly. 
+```
+python3 populate-tables.py
+```
+7. Finally, run the test-db.py file to test the database with an interactive prompt. MySQL Workbench will reflect any changes made by the python script. 
+```
+python3 test_db.py
 ```
